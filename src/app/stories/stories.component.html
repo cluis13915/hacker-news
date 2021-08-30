@@ -1,0 +1,27 @@
+<div
+  class="card story"
+  *ngFor="
+    let story of stories | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count };
+    trackBy: trackById;
+  "
+>
+  <div class="card-body">
+    <div class="content">
+      <p>{{story.title}}</p>
+      <a href="{{story.url}}" target="_blank">{{story.url}}</a>
+    </div>
+    <div class="divider"></div>
+    <div class="info">
+      <div class="line">
+        <small><span class="label">Author:</span> {{story.by}}</small>
+      </div>
+      <div class="line">
+        <small><span class="label">Date:</span> {{story.time}}</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pagination-container">
+  <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+</div>
