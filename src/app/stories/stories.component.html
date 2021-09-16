@@ -7,7 +7,7 @@
 >
   <div class="card-body">
     <div class="content">
-      <p>{{story.title}}</p>
+      <p (click)="viewStory(story)" class="title">{{story.title}}</p>
       <a href="{{story.url}}" target="_blank">{{story.url}}</a>
     </div>
     <div class="divider"></div>
@@ -16,7 +16,7 @@
         <small><span class="label">Author:</span> {{story.by}}</small>
       </div>
       <div class="line">
-        <small><span class="label">Date:</span> {{story.time}}</small>
+        <small><span class="label">Date:</span> {{story.date | date: 'yyyy/MM/dd/ HH:mm'}}</small>
       </div>
     </div>
   </div>

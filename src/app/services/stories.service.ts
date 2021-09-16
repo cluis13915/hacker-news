@@ -15,7 +15,7 @@ export interface FetchParams {
   providedIn: 'root'
 })
 export class StoriesService {
-  public loadingList: boolean = false;
+  public isLoading: boolean = false;
 
   constructor(
     private req: RequestService,
@@ -27,14 +27,49 @@ export class StoriesService {
     let page = params && params.page || 1;
     let size = params && params.size || 10;
 
-    this.loadingList = true;
+    this.isLoading = true;
 
     return this.req.get<StoriesResponse>(`/stories?page=${page}&size=${size}`)
       .pipe(
-        tap(() => (this.loadingList = false)),
+        tap(() => (this.isLoading = false)),
+        map((response) => {
+          response.data.forEach((story: Story) => {
+            story.date = new Date(story.time * 1000);
+          });
+
+          return response;
+        }),
         catchError((error) => {
-          this.loadingList = false;
-          this.notifier.notify('error', 'Ocurrió un error al obtener los registros.');
+          this.isLoading = false;
+          this.notifier.notify('error', 'Error getting stories. Try reloading the page.');
+
+          if (error.error.message) {
+            this.notifier.notify('error', error.error.message);
+          }
+
+          throw error;
+        })
+      );
+  }
+
+  fetchById(id: string): Observable<Story> {
+    this.isLoading = true;
+
+    return this.req.get<Story>(`/stories/${id}`)
+      .pipe(
+        tap(() => (this.isLoading = false)),
+        map((story) => {
+          story.date = new Date(story.time * 1000)
+
+          return story;
+        }),
+        catchError((error) => {
+          this.isLoading = false;
+          this.notifier.notify('error', 'Error getting story item. Try reloading the page.');
+
+          if (error.error.message) {
+            this.notifier.notify('error', error.error.message);
+          }
 
           throw error;
         })

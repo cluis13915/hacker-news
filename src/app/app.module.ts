@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { StoriesComponent } from './stories/stories.component';
 import { LatestStoriesComponent } from './latest-stories/latest-stories.component';
+import { StoryComponent } from './story/story.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { LatestStoriesComponent } from './latest-stories/latest-stories.componen
     NavbarComponent,
     StoriesComponent,
     LatestStoriesComponent,
+    StoryComponent,
   ],
   imports: [
     BrowserModule,

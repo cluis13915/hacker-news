@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StoriesService } from '../services/stories.service';
 import { StoriesResponse, Story } from '../types/story.type';
 
@@ -13,7 +14,7 @@ export class StoriesComponent implements OnInit {
   public page: number = 1;
   public count: number = 0;
 
-  constructor(private storiesService: StoriesService) { }
+  constructor(private storiesService: StoriesService, private router: Router) { }
 
   ngOnInit(): void {
     this.page = 1;
@@ -32,6 +33,10 @@ export class StoriesComponent implements OnInit {
         this.page = res.page;
         this.count = res.count;
       });
+  }
+
+  viewStory(story: Story) {
+    this.router.navigate([`/stories/${story._id}`])
   }
 
   handlePageChange(event: number) {

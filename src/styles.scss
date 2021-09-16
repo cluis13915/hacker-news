@@ -6,3 +6,30 @@
   justify-content: center;
   margin-top: 20px;
 }
+
+.card-body {
+  display: flex;
+
+  .content {
+    flex-grow: 1;
+
+    .title {
+      cursor: pointer;
+    }
+  }
+
+  .divider {
+    width: 1px;
+    border: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 0 10px;
+  }
+
+  .info {
+    width: 150px;
+
+    .label {
+      font-weight: 600;
+    }
+  }
+}

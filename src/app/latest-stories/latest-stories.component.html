@@ -1,11 +1,11 @@
-<h5>Last update: {{ lastUpdate | date: 'dd/MM/yyyy HH:mm:ss' }}</h5>
+<h5>Last update: {{ lastUpdate | date: 'yyyy/MM/dd HH:mm:ss' }}</h5>
 <div
   class="card story"
   *ngFor="let story of stories; trackBy: trackById;"
 >
   <div class="card-body">
     <div class="content">
-      <p>{{story.title}}</p>
+      <p (click)="viewStory(story)" class="title">{{story.title}}</p>
       <a href="{{story.url}}" target="_blank">{{story.url}}</a>
     </div>
     <div class="divider"></div>

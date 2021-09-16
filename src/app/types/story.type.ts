@@ -4,6 +4,7 @@ export interface Story {
   title: string;
   url: string;
   time: number;
+  date: Date|undefined;
 }
 
 export interface StoriesResponse {
