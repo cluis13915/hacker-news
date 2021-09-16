@@ -1,0 +1,21 @@
+<h5>Last update: {{ lastUpdate | date: 'dd/MM/yyyy HH:mm:ss' }}</h5>
+<div
+  class="card story"
+  *ngFor="let story of stories; trackBy: trackById;"
+>
+  <div class="card-body">
+    <div class="content">
+      <p>{{story.title}}</p>
+      <a href="{{story.url}}" target="_blank">{{story.url}}</a>
+    </div>
+    <div class="divider"></div>
+    <div class="info">
+      <div class="line">
+        <small><span class="label">Author:</span> {{story.by}}</small>
+      </div>
+      <div class="line">
+        <small><span class="label">Date:</span> {{story.time}}</small>
+      </div>
+    </div>
+  </div>
+</div>

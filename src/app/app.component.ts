@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { StoriesService } from './services/stories.service';
+import { Story } from './types/story.type';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'hacker-news';
+  tabActive = 1;
+
+  latestStories: Story[] = [];
+  lastUpdate: Date | null = null;
+
+  constructor(private storiesService: StoriesService) {
+    // Create socket connection and subscribe to server response.
+    this.storiesService.getSocketConnection().subscribe((data: Story[]) => {
+      this.latestStories = data;
+      this.lastUpdate = new Date();
+    });
+  }
 }

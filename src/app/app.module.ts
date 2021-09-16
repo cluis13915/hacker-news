@@ -9,12 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { StoriesComponent } from './stories/stories.component';
+import { LatestStoriesComponent } from './latest-stories/latest-stories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     StoriesComponent,
+    LatestStoriesComponent,
   ],
   imports: [
     BrowserModule,

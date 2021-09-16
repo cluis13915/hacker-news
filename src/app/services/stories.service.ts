@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
 import { Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { StoriesResponse, Story } from '../types/story.type';
+import { WebSocketService } from '../web-socket.service';
 import { RequestService } from './request.service';
 
 export interface FetchParams {
@@ -16,7 +17,11 @@ export interface FetchParams {
 export class StoriesService {
   public loadingList: boolean = false;
 
-  constructor(private req: RequestService, private notifier: NotifierService) { }
+  constructor(
+    private req: RequestService,
+    private wsService: WebSocketService,
+    private notifier: NotifierService
+  ) { }
 
   fetch(params?: FetchParams): Observable<StoriesResponse> {
     let page = params && params.page || 1;
@@ -36,7 +41,8 @@ export class StoriesService {
       );
   }
 
-  onChangePage(pageOfItems: Array<any>) {
-    console.log(pageOfItems);
+  getSocketConnection() {
+    return this.wsService.connect()
+      .pipe(map(response => JSON.parse(response.data)));
   }
 }

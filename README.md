@@ -24,4 +24,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## References
 
-Pagination: https://www.bezkoder.com/angular-10-pagination-ngx/
+Pagination:
+  - https://www.bezkoder.com/angular-10-pagination-ngx/
+
+Angular WebSockets:
+  - https://www.youtube.com/watch?v=8CNVYWiR5fg
+  - https://javascript-conference.com/blog/real-time-in-angular-a-journey-into-websocket-and-rxjs/

@@ -1,5 +1,20 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-  <app-stories></app-stories>
+  <ul ngbNav #nav="ngbNav" [(activeId)]="tabActive" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Paginated</a>
+      <ng-template ngbNavContent>
+        <app-stories></app-stories>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>WebSocket</a>
+      <ng-template ngbNavContent>
+        <app-latest-stories [stories]="latestStories" [lastUpdate]="lastUpdate"></app-latest-stories>
+      </ng-template>
+    </li>
+  </ul>
+  
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
 </div>
